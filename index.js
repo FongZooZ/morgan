@@ -32,6 +32,8 @@ var onHeaders = require('on-headers')
 var dgram = require('dgram')
 var util = require('util')
 
+var udpClient = dgram.createSocket('udp4');
+
 /**
  * Array of CLF month names.
  * @private
@@ -88,7 +90,7 @@ function morgan (format, options) {
   // stream
   var buffer = opts.buffer
   var stream = opts.stream || process.stdout
-  var udp = opts.udp
+  var udpOptions = opts.udp
 
   // buffering support
   if (buffer) {
@@ -130,14 +132,14 @@ function morgan (format, options) {
       }
 
       debug('log request')
-      if (!udp) {
+      if (!udpOptions) {
         stream.write(line + '\n')
       } else {
-        var host = udp.host
-        var port = udp.port
+        var host = udpOptions.host
+        var port = udpOptions.port
         var buffer = Buffer.from(line)
 
-        udp.send(buffer, 0, buffer.length, port, host, function(err) {
+        udpClient.send(buffer, 0, buffer.length, port, host, function(err) {
           if (err) debug('morgan-udp - %s:%p Error: %s', host, port, util.inspect(err))
         })
       }
