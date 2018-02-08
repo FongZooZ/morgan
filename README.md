@@ -7,6 +7,7 @@
 [![Gratipay][gratipay-image]][gratipay-url]
 
 HTTP request logger middleware for node.js
+This is a fork from morgan that supports sending log via UDP
 
 > Named after [Dexter](http://en.wikipedia.org/wiki/Dexter_Morgan), a show you should not watch until completion.
 
