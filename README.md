@@ -93,7 +93,7 @@ Output stream for writing log lines, defaults to `process.stdout`.
 
 Send log output to external service use UDP
 
-```
+```js
 morgan('combined', {
   udp: {
     host: 'localhost',
