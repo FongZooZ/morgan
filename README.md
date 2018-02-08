@@ -89,6 +89,19 @@ morgan('combined', {
 
 Output stream for writing log lines, defaults to `process.stdout`.
 
+##### UDP
+
+Send log output to external service use UDP
+
+```
+morgan('combined', {
+  udp: {
+    host: 'localhost',
+    port: '4000'
+  }
+})
+```
+
 #### Predefined Formats
 
 There are various pre-defined formats provided:
