@@ -133,12 +133,11 @@ function morgan (format, options) {
       if (!udp) {
         stream.write(line + '\n')
       } else {
-        var logObject = udp.data
         var host = udp.host
         var port = udp.port
-        var buffer = Buffer.from(JSON.stringify(logObject))
+        var buffer = Buffer.from(line)
 
-        udp.send(buffer, 0, buffer.length, port, host, function(err, bytes) {
+        udp.send(buffer, 0, buffer.length, port, host, function(err) {
           if (err) debug('morgan-udp - %s:%p Error: %s', host, port, util.inspect(err))
         })
       }
